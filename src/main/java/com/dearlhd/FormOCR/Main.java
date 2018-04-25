@@ -1,6 +1,6 @@
 package com.dearlhd.FormOCR;
 
-import com.dearlhd.FormOCR.KBUtil.KnowledgeBaseHelper;
+import com.dearlhd.FormOCR.TableAnalyseUtil.TableDataInitializer;
 
 /**
  * Created by dearlhd on 2018/4/18.
@@ -8,7 +8,9 @@ import com.dearlhd.FormOCR.KBUtil.KnowledgeBaseHelper;
 public class Main {
 
     public static void main (String args[]) {
-        KnowledgeBaseHelper helper = new KnowledgeBaseHelper();
-        helper.queryConcept("name");
+//        KnowledgeBaseHelper helper = new KnowledgeBaseHelper();
+//        helper.queryConcept("name");
+        TableDataInitializer initializer = new TableDataInitializer();
+        initializer.printNodes();
     }
 }
