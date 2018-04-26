@@ -9,6 +9,7 @@ import java.util.List;
 public class TableNode {
     int id;
     String value;
+    String valueEng;
     boolean isProperty;
     public List<Integer> top;
     public List<Integer> bottom;
@@ -17,9 +18,10 @@ public class TableNode {
 
     public TableNode () {}
 
-    public TableNode (int id, String value) {
+    public TableNode (int id, String value, String valueEng) {
         this.id = id;
         this.value = value;
+        this.valueEng = valueEng;
         this.top = new ArrayList<>();
         this.bottom = new ArrayList<>();
         this.left = new ArrayList<>();
@@ -42,43 +44,19 @@ public class TableNode {
         this.value = value;
     }
 
+    public String getValueEng() {
+        return valueEng;
+    }
+
+    public void setValueEng(String valueEng) {
+        this.valueEng = valueEng;
+    }
+
     public boolean isProperty() {
         return isProperty;
     }
 
     public void setProperty(boolean property) {
         isProperty = property;
-    }
-
-    public List<Integer> getTop() {
-        return top;
-    }
-
-    public void setTop(List<Integer> top) {
-        this.top = top;
-    }
-
-    public List<Integer> getBottom() {
-        return bottom;
-    }
-
-    public void setBottom(List<Integer> bottom) {
-        this.bottom = bottom;
-    }
-
-    public List<Integer> getLeft() {
-        return left;
-    }
-
-    public void setLeft(List<Integer> left) {
-        this.left = left;
-    }
-
-    public List<Integer> getRight() {
-        return right;
-    }
-
-    public void setRight(List<Integer> right) {
-        this.right = right;
     }
 }
