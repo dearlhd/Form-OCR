@@ -14,11 +14,12 @@ import java.util.List;
 public class KnowledgeBaseHelper {
 
     final public String KB_PATH = "KnowledgeBase/dbpedia_2016-10.owl";
+    final public String KB_PATH_ONLINE = "http://dbpedia.org/sparql";
     private Model model = null;
 
     public KnowledgeBaseHelper () {
         model = ModelFactory.createMemModelMaker().createDefaultModel();
-        model.read(KB_PATH);
+        model.read(KB_PATH_ONLINE);
     }
 
     public List<QueryResult> queryConcept (String concept) {
@@ -32,17 +33,31 @@ public class KnowledgeBaseHelper {
                 "           langMatches(lang(?o), \"EN\")).\n" +
                 "} limit 10";
 
-        String testQuery = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-                "SELECT * \n" +
+        String testQuery =
+                "PREFIX dbo: <http://dbpedia.org/ontology/>\n" +
+                "PREFIX dbp: <http://dbpedia.org/property/>\n" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "SELECT  ?country_name\n" +
                 "WHERE {\n" +
-                "    ?s rdfs:label ?o." +
-                "} limit 10";
+                "?country a dbo:Country.\n" +
+                "?country rdfs:label ?country_name.\n" +
+                "FILTER langMatches( lang(?country_name), \"en\"  ).}\n" +
+                "GROUP BY ?country_name\n" +
+                "LIMIT 10";
 
-        Query query = QueryFactory.create(queryString);
+        String testQuery2 = "select * where { ?s ?p ?o .} LIMIT 100";
+
+        Query query = QueryFactory.create(testQuery);
         QueryExecution qe = QueryExecutionFactory.create(query, model);
         ResultSet results = qe.execSelect();
 
+        if (results.hasNext()) {
+            System.out.println("有结果");
+        }
+
+        int i = 0;
         while (results.hasNext()) {
+            System.out.print(++i + ": ");
             QuerySolution qs = results.next();
             String sub = qs.get("s").toString();
             String pre = qs.get("p").toString();

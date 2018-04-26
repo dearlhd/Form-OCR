@@ -114,7 +114,7 @@ public class TableDataInitializer {
         node.bottom.add(17);
         nodes.add(node);
 
-        node = new TableNode(i++, "邮箱", "E-mail");
+        node = new TableNode(i++, "邮箱", "Email");
         node.top.add(19);
         node.left.add(13);
         node.right.add(15);
