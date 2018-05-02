@@ -14,4 +14,11 @@ dependencies {
 
     compile group: 'org.apache.jena', name: 'jena-core', version: '3.0.1'
     compile group: 'org.apache.jena', name: 'jena-tdb', version: '3.0.1'
+
+    // https://mvnrepository.com/artifact/com.huaban/jieba-analysis
+    compile group: 'com.huaban', name: 'jieba-analysis', version: '1.0.2'
+
+    // https://mvnrepository.com/artifact/org.jsoup/jsoup
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.10.3'
+
 }
